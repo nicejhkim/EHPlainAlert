@@ -6,7 +6,7 @@ This is simple extension for presenting multiple system-wide notifications from 
 
 ## Requirements
 
-- Requires iOS 7.0 or later
+- Requires iOS 7.1 or later
 - Requires Automatic Reference Counting (ARC)
 
 ##Features
