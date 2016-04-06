@@ -16,11 +16,12 @@
 
 @implementation EHPlainAlert
 {
-    CGSize screenSize;
+
     ViewAlertType _alertType;
 }
 
 static NSMutableArray * currentAlertArray = nil;
+static CGSize screenSize;
 
 + (instancetype)showError:(NSError *)error
 {
@@ -76,6 +77,7 @@ static NSMutableArray * currentAlertArray = nil;
     self.view.backgroundColor = [UIColor clearColor];
     
     screenSize = [UIScreen mainScreen].bounds.size;
+    
     self.view.frame = CGRectMake(0, screenSize.height, screenSize.width, 70);
     self.view.layer.masksToBounds = NO;
     
@@ -163,50 +165,57 @@ static NSMutableArray * currentAlertArray = nil;
 
 - (void)show
 {
+    __block typeof(self) blockSelf = self;
     if ([currentAlertArray count] == EHDEFAULT_MAX_ALERTS_NUMBER)
     {
         [[currentAlertArray firstObject] hide:@(YES)];
     }
     
     NSInteger numberOfAlerts = [currentAlertArray count];
-    if (numberOfAlerts == 0)
-        [([UIApplication sharedApplication].delegate).window addSubview:self.view];
-    else
-        [([UIApplication sharedApplication].delegate).window insertSubview:self.view belowSubview:[((EHPlainAlert *)[currentAlertArray lastObject]) view]];
-    [UIView animateWithDuration:0.3 animations:^{
-        self.view.frame = CGRectMake(0, screenSize.height - 70 * (numberOfAlerts + 1) - 0.5 * (numberOfAlerts), screenSize.width, 70);
-    }];
-
-    [currentAlertArray addObject:self];
-    
-    [self performSelector:@selector(hide:) withObject:@(YES) afterDelay:EHDEFAULT_HIDING_DELAY];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        if (numberOfAlerts == 0)
+            [([UIApplication sharedApplication].delegate).window addSubview:blockSelf.view];
+        else
+            [([UIApplication sharedApplication].delegate).window insertSubview:blockSelf.view belowSubview:[((EHPlainAlert *)[currentAlertArray lastObject]) view]];
+        [UIView animateWithDuration:0.3 animations:^{
+            blockSelf.view.frame = CGRectMake(0, screenSize.height - 70 * (numberOfAlerts + 1) - 0.5 * (numberOfAlerts), screenSize.width, 70);
+        }];
+        
+        [currentAlertArray addObject:blockSelf];
+        
+        [blockSelf performSelector:@selector(hide:) withObject:@(YES) afterDelay:EHDEFAULT_HIDING_DELAY];
+    });
 }
 
 - (void)hide:(NSNumber *)nAnimated
 {
     [currentAlertArray removeObject:self];
-    BOOL animated = [nAnimated boolValue];
-    if (animated)
-    {
-        [UIView animateWithDuration:0.5 animations:^{
-            self.view.alpha = 0.7;
-            self.view.frame = CGRectMake(0, screenSize.height, screenSize.width , 70);
-        } completion:^(BOOL finished) {
-            [self.view removeFromSuperview];
-        }];
-        
-        for (int i = 0; i < [currentAlertArray count]; i++)
+    __block typeof(self) blockSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        BOOL animated = [nAnimated boolValue];
+        if (animated)
         {
-            EHPlainAlert * alert = [currentAlertArray objectAtIndex:i];
             [UIView animateWithDuration:0.5 animations:^{
-                alert.view.frame = CGRectMake(0, screenSize.height - 70 * (i + 1) - 0.5 * (i), screenSize.width, 70);
+                blockSelf.view.alpha = 0.7;
+                blockSelf.view.frame = CGRectMake(0, screenSize.height, screenSize.width , 70);
+            } completion:^(BOOL finished) {
+                [blockSelf.view removeFromSuperview];
             }];
+            
+            for (int i = 0; i < [currentAlertArray count]; i++)
+            {
+                EHPlainAlert * alert = [currentAlertArray objectAtIndex:i];
+                [UIView animateWithDuration:0.5 animations:^{
+                    alert.view.frame = CGRectMake(0, screenSize.height - 70 * (i + 1) - 0.5 * (i), screenSize.width, 70);
+                }];
+            }
         }
-    }
-    else
-    {
-        [self.view removeFromSuperview];
-    }
+        else
+        {
+            [blockSelf.view removeFromSuperview];
+        }
+    });
 }
 
 - (void)hide
