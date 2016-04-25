@@ -15,7 +15,7 @@
 #define EHDEFAULT_HIDING_DELAY 4
 
 
-float iOS_Version() {
+float EH_iOS_Version() {
     return [[[UIDevice currentDevice] systemVersion] floatValue];
 }
 
@@ -196,7 +196,7 @@ static NSMutableArray * currentAlertArray = nil;
 
 - (UIImage *)imageNamed:(NSString *)name
 {
-    if (iOS_Version() < 8)
+    if (EH_iOS_Version() < 8)
     {
         return [NSBundle imageNamed:name];
     }
