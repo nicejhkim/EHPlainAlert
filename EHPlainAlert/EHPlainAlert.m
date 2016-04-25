@@ -14,6 +14,38 @@
 #define EHDEFAULT_MAX_ALERTS_NUMBER 3
 #define EHDEFAULT_HIDING_DELAY 4
 
+
+float iOS_Version() {
+    return [[[UIDevice currentDevice] systemVersion] floatValue];
+}
+
+@interface NSBundle (ios7Bundle)
+
+@end
+
+@implementation NSBundle (ios7Bundle)
+
++ (instancetype)ios7Bundle{
+    NSBundle *mainBundle = [NSBundle mainBundle];
+    NSURL *bundleUrl = [mainBundle URLForResource:@"EHPlainAlert" withExtension:@"EHPlainAlert"];
+    NSBundle *bundle = [NSBundle bundleWithURL:bundleUrl];
+    return bundle;
+}
+
++ (UIImage*)imageNamed:(NSString*)name{
+    UIImage *image;
+    
+    image = [UIImage imageNamed:[NSString stringWithFormat:@"EHPlainAlert.bundle/%@",name]];
+    if (image) {
+        return image;
+    }
+    
+    image = [UIImage imageWithContentsOfFile:[[[NSBundle ios7Bundle] resourcePath] stringByAppendingPathComponent:name]];
+    
+    return image;
+}
+@end
+
 @implementation EHPlainAlert
 {
     CGSize screenSize;
@@ -114,32 +146,32 @@ static NSMutableArray * currentAlertArray = nil;
     
     UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 70)];
     UIColor * bgColor = nil;
-    NSString *bundlePath = [[NSBundle mainBundle] pathForResource:@"EHPlainAlert" ofType:@"bundle"];
-    NSBundle *bundle = [NSBundle bundleWithPath:bundlePath];
+  
     UIImage * oImage = nil;
     switch (_alertType) {
         case ViewAlertError:
         {
             bgColor = [UIColor colorWithHex:0xFDB937];
-            oImage = [UIImage imageNamed:@"eh_alert_error_icon" inBundle:bundle compatibleWithTraitCollection:nil];
+            _iconImage =[self imageNamed:@"eh_alert_error_icon"];
             break;
         }
         case ViewAlertSuccess:
         {
             bgColor = [UIColor colorWithHex:0x49BB7B];
-            oImage = [UIImage imageNamed:@"eh_alert_complete_icon" inBundle:bundle compatibleWithTraitCollection:nil];
+            _iconImage =[self imageNamed:@"eh_alert_complete_icon"];
             break;
         }
         case ViewAlertInfo:
         {
             bgColor = [UIColor colorWithHex:0x00B2F4];
-            oImage = [UIImage imageNamed:@"eh_alert_info_icon" inBundle:bundle compatibleWithTraitCollection:nil];
+            _iconImage = [self imageNamed:@"eh_alert_info_icon"];
             break;
         }
         case ViewAlertPanic:
         {
             bgColor = [UIColor colorWithHex:0xf24841];
-            oImage = [UIImage imageNamed:@"eh_alert_error_icon" inBundle:bundle compatibleWithTraitCollection:nil];
+            _iconImage = [self imageNamed:@"eh_alert_error_icon"];
+            
             break;
         }
         default:
@@ -155,10 +187,25 @@ static NSMutableArray * currentAlertArray = nil;
     imageView.contentMode = UIViewContentModeCenter;
     [infoView addSubview:imageView];
     
-    UIImageView * closeView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"eh_alert_close_icon" inBundle:bundle compatibleWithTraitCollection:nil]];
+    UIImageView * closeView = [[UIImageView alloc] initWithImage:[self imageNamed:@"eh_alert_close_icon"]];
     closeView.frame = CGRectMake(infoView.bounds.size.width - 15, 8, 7, 7);
     closeView.contentMode = UIViewContentModeCenter;
     [infoView addSubview:closeView];
+}
+
+
+- (UIImage *)imageNamed:(NSString *)name
+{
+    if (iOS_Version() < 8)
+    {
+        return [NSBundle imageNamed:name];
+    }
+    else
+    {
+        NSString *bundlePath = [[NSBundle mainBundle] pathForResource:@"EHPlainAlert" ofType:@"bundle"];
+        NSBundle *bundle = [NSBundle bundleWithPath:bundlePath];
+        return [UIImage imageNamed:name inBundle:bundle compatibleWithTraitCollection:nil];
+    }
 }
 
 - (void)show
