@@ -84,6 +84,26 @@
     XCTAssertNotNil(alert);
 }
 
+
+- (void)testBehaviourChange
+{
+    NSInteger hex = arc4random()%0xffffff;
+    UIColor * color = [UIColor colorWithHex:hex];
+    [EHPlainAlert updateAlertColor:color forType:ViewAlertError];
+    UIFont * font = [UIFont systemFontOfSize:20];
+    [EHPlainAlert updateTitleFont:font];
+    [EHPlainAlert updateSubTitleFont:font];
+    [EHPlainAlert updateNumberOfAlerts:1];
+    [EHPlainAlert updateHidingDelay:1];
+    EHPlainAlert * alert = [[EHPlainAlert alloc] initWithTitle:@"My title" message:@"My message" type:ViewAlertError];
+    XCTAssertNotNil(alert);
+    [alert show];
+    XCTAssertEqual(alert.view.backgroundColor,color);
+    XCTAssertEqual(alert.titleFont,font);
+    XCTAssertEqual(alert.subTitleFont,font);
+    
+}
+
 - (void)testColor
 {
     NSInteger hex = arc4random()%0xffffff;

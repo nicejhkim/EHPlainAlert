@@ -329,12 +329,18 @@ static NSMutableArray * currentAlertArray = nil;
 
 + (void)updateNumberOfAlerts:(NSInteger)numberOfAlerts
 {
-    _EHNumberOfVisibleAlerts = numberOfAlerts;
+    if (numberOfAlerts > 0)
+    {
+        _EHNumberOfVisibleAlerts = numberOfAlerts;
+    }
 }
 
 + (void)updateHidingDelay:(float)delay
 {
-    _EHHidingDelay = delay;
+    if (delay >= 0)
+    {
+        _EHHidingDelay = delay;
+    }
 }
 
 + (void)updateTitleFont:(UIFont *)titleFont
