@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = "EHPlainAlert"
-  s.version          = "1.0.5"
-  s.summary          = "Simple plain-style system-wide alertviews"
+  s.version          = "1.0.6"
+  s.summary          = "Simple plain-style system-wide alertview"
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!  
   s.description      = <<-DESC
-  This is simple extension for presenting multiple plain-style system-wide alertviews from bottom of device screen.
+  This is simple extension for presenting multiple plain-style system-wide alertview from bottom of device screen.
                        DESC
 
   s.homepage         = "https://github.com/josshad/EHPlainAlert/"
