@@ -107,4 +107,31 @@ typedef void (^ ActionBlock)();
  */
 - (void)show;
 
+/*!
+ * @brief change maximum number of alerts on screen
+ *
+ * @param numberOfAlerts Number of alertviews. Default is 3
+ */
++ (void)updateNumberOfAlerts:(NSInteger)numberOfAlerts;
+
+/*!
+ * @brief change onscreen time of alertview
+ *
+ * @param delay Time after which an alert is automatically hidden. Default is 4
+ */
++ (void)updateHidingDelay:(float)delay;
+
+/*!
+ * @brief change default title font
+ *
+ * @param titleFont Title font. Default is HelveticaNeue-Light 15
+ */
++ (void)updateTitleFont:(UIFont *)titleFont;
+
+/*!
+ * @brief change default message font
+ *
+ * @param titleFont Message font. Default is HelveticaNeue-Light 12
+ */
++ (void)updateSubTitleFont:(UIFont *)subtitleFont;
 @end

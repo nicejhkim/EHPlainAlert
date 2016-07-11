@@ -14,6 +14,10 @@
 #define EHDEFAULT_MAX_ALERTS_NUMBER 3
 #define EHDEFAULT_HIDING_DELAY 4
 
+static NSInteger _EHNumberOfVisibleAlerts = EHDEFAULT_MAX_ALERTS_NUMBER;
+static float _EHHidingDelay = EHDEFAULT_HIDING_DELAY;
+static UIFont * _EHTitleFont = nil;
+static UIFont * _EHSubTitleFont = nil;
 
 float EH_iOS_Version() {
     return [[[UIDevice currentDevice] systemVersion] floatValue];
@@ -105,6 +109,15 @@ static NSMutableArray * currentAlertArray = nil;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if (!_EHTitleFont)
+    {
+        _EHTitleFont = EHDEFAULT_TITLE_FONT;
+    }
+    if (!_EHSubTitleFont)
+    {
+        _EHSubTitleFont = EHDEFAULT_SUBTITLE_FONT;
+    }
+    
     self.view.backgroundColor = [UIColor clearColor];
     
     screenSize = [UIScreen mainScreen].bounds.size;
@@ -135,10 +148,10 @@ static NSMutableArray * currentAlertArray = nil;
     [infoView addSubview:titleLabel];
     
     NSMutableAttributedString * titleString = [[NSMutableAttributedString alloc] initWithString:_titleString ? _titleString : @""
-                                                                                     attributes:@{NSFontAttributeName : _titleFont ? _titleFont : EHDEFAULT_TITLE_FONT}];
+                                                                                     attributes:@{NSFontAttributeName : _titleFont ? _titleFont : _EHTitleFont}];
     
     NSAttributedString * messageString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"\n%@",_subtitleString ? _subtitleString : @""]
-                                                                         attributes:@{NSFontAttributeName : _subTitleFont ? _subTitleFont : EHDEFAULT_SUBTITLE_FONT}];
+                                                                         attributes:@{NSFontAttributeName : _subTitleFont ? _subTitleFont : _EHSubTitleFont}];
     
     [titleString appendAttributedString:messageString];
     
@@ -215,23 +228,27 @@ static NSMutableArray * currentAlertArray = nil;
 
 - (void)showInMain
 {
-    if ([currentAlertArray count] == EHDEFAULT_MAX_ALERTS_NUMBER)
-    {
-        [[currentAlertArray firstObject] hide:@(YES)];
+    @synchronized (currentAlertArray) {
+    
+        if ([currentAlertArray count] == _EHNumberOfVisibleAlerts)
+        {
+            [[currentAlertArray firstObject] hide:@(YES)];
+        }
+        
+        NSInteger numberOfAlerts = [currentAlertArray count];
+        if (numberOfAlerts == 0)
+            [([UIApplication sharedApplication].delegate).window addSubview:self.view];
+        else
+            [([UIApplication sharedApplication].delegate).window insertSubview:self.view belowSubview:[((EHPlainAlert *)[currentAlertArray lastObject]) view]];
+        [UIView animateWithDuration:0.3 animations:^{
+            self.view.frame = CGRectMake(0, screenSize.height - 70 * (numberOfAlerts + 1) - 0.5 * (numberOfAlerts), screenSize.width, 70);
+        }];
+        
+        [currentAlertArray addObject:self];
+        
+        [self performSelector:@selector(hide:) withObject:@(YES) afterDelay:_EHHidingDelay];
+        
     }
-    
-    NSInteger numberOfAlerts = [currentAlertArray count];
-    if (numberOfAlerts == 0)
-        [([UIApplication sharedApplication].delegate).window addSubview:self.view];
-    else
-        [([UIApplication sharedApplication].delegate).window insertSubview:self.view belowSubview:[((EHPlainAlert *)[currentAlertArray lastObject]) view]];
-    [UIView animateWithDuration:0.3 animations:^{
-        self.view.frame = CGRectMake(0, screenSize.height - 70 * (numberOfAlerts + 1) - 0.5 * (numberOfAlerts), screenSize.width, 70);
-    }];
-    
-    [currentAlertArray addObject:self];
-    
-    [self performSelector:@selector(hide:) withObject:@(YES) afterDelay:EHDEFAULT_HIDING_DELAY];
 }
 
 - (void)hide:(NSNumber *)nAnimated
@@ -241,28 +258,35 @@ static NSMutableArray * currentAlertArray = nil;
 
 - (void)hideInMain:(NSNumber *)nAnimated
 {
-    [currentAlertArray removeObject:self];
-    BOOL animated = [nAnimated boolValue];
-    if (animated)
-    {
-        [UIView animateWithDuration:0.5 animations:^{
-            self.view.alpha = 0.7;
-            self.view.frame = CGRectMake(0, screenSize.height, screenSize.width , 70);
-        } completion:^(BOOL finished) {
-            [self.view removeFromSuperview];
-        }];
-        
-        for (int i = 0; i < [currentAlertArray count]; i++)
+    @synchronized (currentAlertArray) {
+        [currentAlertArray removeObject:self];
+        BOOL animated = [nAnimated boolValue];
+        if (animated)
         {
-            EHPlainAlert * alert = [currentAlertArray objectAtIndex:i];
             [UIView animateWithDuration:0.5 animations:^{
-                alert.view.frame = CGRectMake(0, screenSize.height - 70 * (i + 1) - 0.5 * (i), screenSize.width, 70);
+                self.view.alpha = 0.7;
+                self.view.frame = CGRectMake(0, screenSize.height, screenSize.width , 70);
+            } completion:^(BOOL finished) {
+                [self.view removeFromSuperview];
             }];
+            
+            for (int i = 0; i < [currentAlertArray count]; i++)
+            {
+                EHPlainAlert * alert = [currentAlertArray objectAtIndex:i];
+                [UIView animateWithDuration:0.5 animations:^{
+                    alert.view.frame = CGRectMake(0, screenSize.height - 70 * (i + 1) - 0.5 * (i), screenSize.width, 70);
+                }];
+            }
         }
-    }
-    else
-    {
-        [self.view removeFromSuperview];
+        else
+        {
+            [self.view removeFromSuperview];
+            for (int i = 0; i < [currentAlertArray count]; i++)
+            {
+                EHPlainAlert * alert = [currentAlertArray objectAtIndex:i];
+                alert.view.frame = CGRectMake(0, screenSize.height - 70 * (i + 1) - 0.5 * (i), screenSize.width, 70);
+            }
+        }
     }
 }
 
@@ -281,5 +305,23 @@ static NSMutableArray * currentAlertArray = nil;
     }
 }
 
++ (void)updateNumberOfAlerts:(NSInteger)numberOfAlerts
+{
+    _EHNumberOfVisibleAlerts = numberOfAlerts;
+}
 
++ (void)updateHidingDelay:(float)delay
+{
+    _EHHidingDelay = delay;
+}
+
++ (void)updateTitleFont:(UIFont *)titleFont
+{
+    _EHTitleFont = titleFont;
+}
+
++ (void)updateSubTitleFont:(UIFont *)stitleFont
+{
+    _EHSubTitleFont = stitleFont;
+}
 @end
