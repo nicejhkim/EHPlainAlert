@@ -19,6 +19,8 @@ static float _EHHidingDelay = EHDEFAULT_HIDING_DELAY;
 static UIFont * _EHTitleFont = nil;
 static UIFont * _EHSubTitleFont = nil;
 
+static NSMutableDictionary * _EHColorsDictionary = nil;
+
 float EH_iOS_Version() {
     return [[[UIDevice currentDevice] systemVersion] floatValue];
 }
@@ -88,6 +90,7 @@ static NSMutableArray * currentAlertArray = nil;
         {
             currentAlertArray = [NSMutableArray new];
         }
+        [EHPlainAlert  updateColorsDictionary];
         _alertType = type;
     }
     return self;
@@ -101,8 +104,21 @@ static NSMutableArray * currentAlertArray = nil;
         {
             currentAlertArray = [NSMutableArray new];
         }
+        [EHPlainAlert updateColorsDictionary];
     }
     return self;
+}
+
++ (void)updateColorsDictionary
+{
+    if (!_EHColorsDictionary)
+    {
+        _EHColorsDictionary = [@{ @(ViewAlertError) : [UIColor colorWithHex:0xFDB937],
+                                  @(ViewAlertSuccess) : [UIColor colorWithHex:0x49BB7B],
+                                  @(ViewAlertInfo) :  [UIColor colorWithHex:0x00B2F4],
+                                  @(ViewAlertPanic) :[UIColor colorWithHex:0xf24841]
+                                  } mutableCopy];
+    }
 }
 
 
@@ -158,37 +174,41 @@ static NSMutableArray * currentAlertArray = nil;
     titleLabel.attributedText = titleString;
     
     UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 70)];
-    UIColor * bgColor = nil;
+    UIColor * bgColor = [_EHColorsDictionary objectForKey:@(_alertType)];
   
     UIImage * oImage = nil;
     switch (_alertType) {
         case ViewAlertError:
         {
-            bgColor = [UIColor colorWithHex:0xFDB937];
+         
             _iconImage =[self imageNamed:@"eh_alert_error_icon"];
             break;
         }
         case ViewAlertSuccess:
         {
-            bgColor = [UIColor colorWithHex:0x49BB7B];
+            
             _iconImage =[self imageNamed:@"eh_alert_complete_icon"];
             break;
         }
         case ViewAlertInfo:
         {
-            bgColor = [UIColor colorWithHex:0x00B2F4];
+           
+
             _iconImage = [self imageNamed:@"eh_alert_info_icon"];
             break;
         }
         case ViewAlertPanic:
         {
-            bgColor = [UIColor colorWithHex:0xf24841];
+   
             _iconImage = [self imageNamed:@"eh_alert_error_icon"];
             
             break;
         }
         default:
-            bgColor = [UIColor colorWithHex:0xFDB937];
+            if (!bgColor)
+            {
+                bgColor = [UIColor colorWithHex:0xFDB937];
+            }
             break;
     }
     
@@ -305,6 +325,8 @@ static NSMutableArray * currentAlertArray = nil;
     }
 }
 
+#pragma mark - Default behaviour
+
 + (void)updateNumberOfAlerts:(NSInteger)numberOfAlerts
 {
     _EHNumberOfVisibleAlerts = numberOfAlerts;
@@ -323,5 +345,11 @@ static NSMutableArray * currentAlertArray = nil;
 + (void)updateSubTitleFont:(UIFont *)stitleFont
 {
     _EHSubTitleFont = stitleFont;
+}
+
++ (void)updateAlertColor:(UIColor *)color forType:(ViewAlertType)type
+{
+    [EHPlainAlert updateColorsDictionary];
+    [_EHColorsDictionary setObject:color forKey:@(type)];
 }
 @end

@@ -20,7 +20,8 @@
 //    [EHPlainAlert updateTitleFont:[UIFont fontWithName:@"TrebuchetMS" size:18]];
 //    [EHPlainAlert updateSubTitleFont:[UIFont fontWithName:@"TrebuchetMS" size:10]];
 //    [EHPlainAlert updateNumberOfAlerts:4];
-    
+//    [EHPlainAlert updateAlertColor:[UIColor colorWithWhite:0 alpha:0.5] forType:ViewAlertPanic];
+//    [EHPlainAlert updateHidingDelay:2.5f];
     // Do any additional setup after loading the view, typically from a nib.
 }
 

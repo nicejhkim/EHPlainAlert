@@ -134,4 +134,14 @@ typedef void (^ ActionBlock)();
  * @param titleFont Message font. Default is HelveticaNeue-Light 12
  */
 + (void)updateSubTitleFont:(UIFont *)subtitleFont;
+
+
+/*!
+ * @brief change default alert color
+ *
+ * @param color Background color
+ *
+ * @param type Message type
+ */
++ (void)updateAlertColor:(UIColor *)color forType:(ViewAlertType)type;
 @end
