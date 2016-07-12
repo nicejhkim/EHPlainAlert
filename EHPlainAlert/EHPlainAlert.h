@@ -144,4 +144,13 @@ typedef void (^ ActionBlock)();
  * @param type Message type
  */
 + (void)updateAlertColor:(UIColor *)color forType:(ViewAlertType)type;
+
+/*!
+ * @brief change default alert icon
+ *
+ * @param image Icon image
+ *
+ * @param type Message type
+ */
++ (void)updateAlertIcon:(UIImage *)image forType:(ViewAlertType)type;
 @end

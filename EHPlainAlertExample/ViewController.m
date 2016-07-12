@@ -22,6 +22,7 @@
 //    [EHPlainAlert updateNumberOfAlerts:4];
 //    [EHPlainAlert updateAlertColor:[UIColor colorWithWhite:0 alpha:0.5] forType:ViewAlertPanic];
 //    [EHPlainAlert updateHidingDelay:2.5f];
+//    [EHPlainAlert updateAlertIcon:nil forType:ViewAlertInfo]; 
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -68,6 +69,7 @@
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://github.com/josshad/EHPlainAlert"]];
     };
     ehAlert.messageColor = [UIColor blueColor];
+    ehAlert.iconImage = nil;
     [ehAlert show];
 }
 

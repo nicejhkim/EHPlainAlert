@@ -95,6 +95,7 @@
     [EHPlainAlert updateSubTitleFont:font];
     [EHPlainAlert updateNumberOfAlerts:1];
     [EHPlainAlert updateHidingDelay:1];
+    [EHPlainAlert updateAlertIcon:nil forType:ViewAlertInfo];
     EHPlainAlert * alert = [[EHPlainAlert alloc] initWithTitle:@"My title" message:@"My message" type:ViewAlertError];
     XCTAssertNotNil(alert);
     [alert show];

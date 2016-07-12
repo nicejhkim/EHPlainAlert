@@ -20,6 +20,7 @@ static UIFont * _EHTitleFont = nil;
 static UIFont * _EHSubTitleFont = nil;
 
 static NSMutableDictionary * _EHColorsDictionary = nil;
+static NSMutableDictionary * _EHIconsDictionary = nil;
 
 float EH_iOS_Version() {
     return [[[UIDevice currentDevice] systemVersion] floatValue];
@@ -56,6 +57,7 @@ float EH_iOS_Version() {
 {
     CGSize screenSize;
     ViewAlertType _alertType;
+    BOOL _iconSetted;
 }
 
 static NSMutableArray * currentAlertArray = nil;
@@ -91,6 +93,7 @@ static NSMutableArray * currentAlertArray = nil;
             currentAlertArray = [NSMutableArray new];
         }
         [EHPlainAlert  updateColorsDictionary];
+        [EHPlainAlert  updateIconsDictionary];
         _alertType = type;
     }
     return self;
@@ -105,6 +108,7 @@ static NSMutableArray * currentAlertArray = nil;
             currentAlertArray = [NSMutableArray new];
         }
         [EHPlainAlert updateColorsDictionary];
+        [EHPlainAlert  updateIconsDictionary];
     }
     return self;
 }
@@ -121,6 +125,17 @@ static NSMutableArray * currentAlertArray = nil;
     }
 }
 
++ (void)updateIconsDictionary
+{
+    if (!_EHIconsDictionary)
+    {
+        _EHIconsDictionary = [@{ @(ViewAlertError) : [EHPlainAlert imageNamed:@"eh_alert_error_icon"],
+                                  @(ViewAlertSuccess) : [EHPlainAlert imageNamed:@"eh_alert_complete_icon"],
+                                  @(ViewAlertInfo) :  [EHPlainAlert imageNamed:@"eh_alert_info_icon"],
+                                  @(ViewAlertPanic) :[EHPlainAlert imageNamed:@"eh_alert_error_icon"]
+                                  } mutableCopy];
+    }
+}
 
 - (void)viewDidLoad
 {
@@ -145,7 +160,6 @@ static NSMutableArray * currentAlertArray = nil;
     UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTap)];
     [self.view addGestureRecognizer:tapGesture];
 }
-
 
 - (void)constructAlert
 {
@@ -175,59 +189,28 @@ static NSMutableArray * currentAlertArray = nil;
     
     UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 70)];
     UIColor * bgColor = [_EHColorsDictionary objectForKey:@(_alertType)];
-  
-    UIImage * oImage = nil;
-    switch (_alertType) {
-        case ViewAlertError:
-        {
-         
-            _iconImage =[self imageNamed:@"eh_alert_error_icon"];
-            break;
-        }
-        case ViewAlertSuccess:
-        {
-            
-            _iconImage =[self imageNamed:@"eh_alert_complete_icon"];
-            break;
-        }
-        case ViewAlertInfo:
-        {
-           
-
-            _iconImage = [self imageNamed:@"eh_alert_info_icon"];
-            break;
-        }
-        case ViewAlertPanic:
-        {
-   
-            _iconImage = [self imageNamed:@"eh_alert_error_icon"];
-            
-            break;
-        }
-        default:
-            if (!bgColor)
-            {
-                bgColor = [UIColor colorWithHex:0xFDB937];
-            }
-            break;
+    if (!_iconSetted)
+        _iconImage = [_EHIconsDictionary objectForKey:@(_alertType)];
+ 
+    if (!bgColor)
+    {
+        bgColor = [UIColor colorWithHex:0xFDB937];
     }
+ 
     
     infoView.backgroundColor = _messageColor ? _messageColor : bgColor;
-    
-    imageView.image = _iconImage ? _iconImage : oImage;
-    
-    imageView.alpha = 0.4;
+    imageView.image = _iconImage;   
     imageView.contentMode = UIViewContentModeCenter;
     [infoView addSubview:imageView];
     
-    UIImageView * closeView = [[UIImageView alloc] initWithImage:[self imageNamed:@"eh_alert_close_icon"]];
+    UIImageView * closeView = [[UIImageView alloc] initWithImage:[EHPlainAlert imageNamed:@"eh_alert_close_icon"]];
     closeView.frame = CGRectMake(infoView.bounds.size.width - 15, 8, 7, 7);
     closeView.contentMode = UIViewContentModeCenter;
     [infoView addSubview:closeView];
 }
 
 
-- (UIImage *)imageNamed:(NSString *)name
++ (UIImage *)imageNamed:(NSString *)name
 {
     if (EH_iOS_Version() < 8)
     {
@@ -325,6 +308,13 @@ static NSMutableArray * currentAlertArray = nil;
     }
 }
 
+#pragma mark - Setters
+- (void)setIconImage:(UIImage *)iconImage
+{
+    _iconImage = iconImage;
+    _iconSetted = YES;
+}
+
 #pragma mark - Default behaviour
 
 + (void)updateNumberOfAlerts:(NSInteger)numberOfAlerts
@@ -356,6 +346,27 @@ static NSMutableArray * currentAlertArray = nil;
 + (void)updateAlertColor:(UIColor *)color forType:(ViewAlertType)type
 {
     [EHPlainAlert updateColorsDictionary];
-    [_EHColorsDictionary setObject:color forKey:@(type)];
+    if (color)
+    {
+        [_EHColorsDictionary setObject:color forKey:@(type)];
+    }
+    else
+    {
+        [_EHColorsDictionary removeObjectForKey:@(type)];
+    }
+}
+
+
++ (void)updateAlertIcon:(UIImage *)image forType:(ViewAlertType)type
+{
+    [EHPlainAlert updateIconsDictionary];
+    if (image)
+    {
+        [_EHIconsDictionary setObject:image forKey:@(type)];
+    }
+    else
+    {
+        [_EHIconsDictionary removeObjectForKey:@(type)];
+    }
 }
 @end

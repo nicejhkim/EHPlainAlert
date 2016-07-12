@@ -1,3 +1,6 @@
+### Version 1.1.0
+Icons customization
+
 ### Version 1.0.6
 Static methods for changing default behavior.
 	+ (void)updateNumberOfAlerts:(NSInteger)numberOfAlerts;

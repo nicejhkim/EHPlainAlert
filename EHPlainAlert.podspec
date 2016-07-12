@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "EHPlainAlert"
-  s.version          = "1.0.7"
+  s.version          = "1.1.0"
   s.summary          = "Simple plain-style system-wide alertview"
 
 # This description is used to generate tags and improve search results.

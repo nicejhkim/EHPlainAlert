@@ -94,7 +94,7 @@ Change font of one alert
     ehAlert.subTitleFont = [UIFont fontWithName:@"TrebuchetMS-Italic" size:12];
     [ehAlert show];
 
-Change fonts for entire application
+Change fonts for alert type
 
     [EHPlainAlert updateTitleFont:[UIFont fontWithName:@"TrebuchetMS" size:18]];
     [EHPlainAlert updateSubTitleFont:[UIFont fontWithName:@"TrebuchetMS" size:10]];
@@ -106,9 +106,20 @@ Change background color of one alert
     ehAlert.messageColor = [UIColor blueColor];
     [ehAlert show];
 
-Change color for application
+Change color for alert type
 
     [EHPlainAlert updateAlertColor:[UIColor colorWithWhite:0 alpha:0.5] forType:ViewAlertPanic];
+
+####Icons:
+
+Change icon of one alert
+    EHPlainAlert * ehAlert = [[EHPlainAlert alloc] initWithTitle:@"Hmm..." message:@"Blue color alert" type:ViewAlertInfo];
+    ehAlert.iconImage = image;
+    [ehAlert show];
+
+Change icon for alert type
+
+    [EHPlainAlert updateAlertIcon:image forType:ViewAlertInfo]; 
 
 ####Number of messages
     
