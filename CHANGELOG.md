@@ -1,3 +1,6 @@
+### Version 1.1.1
+Fixing pods bundle bug
+
 ### Version 1.1.0
 Icons customization
 

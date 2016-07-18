@@ -218,9 +218,11 @@ static NSMutableArray * currentAlertArray = nil;
     }
     else
     {
-        NSString *bundlePath = [[NSBundle mainBundle] pathForResource:@"EHPlainAlert" ofType:@"bundle"];
-        NSBundle *bundle = [NSBundle bundleWithPath:bundlePath];
-        return [UIImage imageNamed:name inBundle:bundle compatibleWithTraitCollection:nil];
+        NSBundle * pbundle = [NSBundle bundleForClass:[self class]];
+        NSString *bundleURL = [pbundle pathForResource:@"EHPlainAlert" ofType:@"bundle"];
+        NSBundle *imagesBundle = [NSBundle bundleWithPath:bundleURL];
+        UIImage * image = [UIImage imageNamed:name inBundle:imagesBundle compatibleWithTraitCollection:nil];
+        return image;
     }
 }
 
