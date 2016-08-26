@@ -17,6 +17,11 @@ typedef enum : NSUInteger {
     ViewAlertUnknown
 } ViewAlertType;
 
+typedef enum : NSUInteger {
+    ViewAlertPositionBottom = 0,
+    ViewAlertPositionTop
+} ViewAlertPosition;
+
 typedef void (^ ActionBlock)();
 
 
@@ -135,6 +140,12 @@ typedef void (^ ActionBlock)();
  */
 + (void)updateSubTitleFont:(UIFont *)subtitleFont;
 
+/*!
+ * @brief change default alert positon
+ *
+ * @param viewPosition of type ViewAlertPosition. Default is ViewAlertPositionBottom
+ */
++ (void)updateAlertPosition:(ViewAlertPosition)viewPosition;
 
 /*!
  * @brief change default alert color
@@ -153,4 +164,13 @@ typedef void (^ ActionBlock)();
  * @param type Message type
  */
 + (void)updateAlertIcon:(UIImage *)image forType:(ViewAlertType)type;
+
+/*!
+ * @brief change default alert icon
+ *
+ * @param image Icon image
+ *
+ * @param type Message type
+ */
+
 @end

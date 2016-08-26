@@ -14,7 +14,10 @@
 #define EHDEFAULT_MAX_ALERTS_NUMBER 3
 #define EHDEFAULT_HIDING_DELAY 4
 
+#define EHPOSITIONFORALERT(i) (_EHAlertPosition == ViewAlertPositionBottom)?screenSize.height - 70 * (i + 1) - 0.5 * (i):70 * (i) + 0.5 * (i)
+
 static NSInteger _EHNumberOfVisibleAlerts = EHDEFAULT_MAX_ALERTS_NUMBER;
+static ViewAlertPosition _EHAlertPosition = ViewAlertPositionBottom;
 static float _EHHidingDelay = EHDEFAULT_HIDING_DELAY;
 static UIFont * _EHTitleFont = nil;
 static UIFont * _EHSubTitleFont = nil;
@@ -152,7 +155,7 @@ static NSMutableArray * currentAlertArray = nil;
     self.view.backgroundColor = [UIColor clearColor];
     
     screenSize = [UIScreen mainScreen].bounds.size;
-    self.view.frame = CGRectMake(0, screenSize.height, screenSize.width, 70);
+    self.view.frame = CGRectMake(0, (_EHAlertPosition)?-70:screenSize.height, screenSize.width , 70);
     self.view.layer.masksToBounds = NO;
     
     [self constructAlert];
@@ -246,7 +249,7 @@ static NSMutableArray * currentAlertArray = nil;
         else
             [([UIApplication sharedApplication].delegate).window insertSubview:self.view belowSubview:[((EHPlainAlert *)[currentAlertArray lastObject]) view]];
         [UIView animateWithDuration:0.3 animations:^{
-            self.view.frame = CGRectMake(0, screenSize.height - 70 * (numberOfAlerts + 1) - 0.5 * (numberOfAlerts), screenSize.width, 70);
+            self.view.frame = CGRectMake(0, EHPOSITIONFORALERT(numberOfAlerts), screenSize.width, 70);
         }];
         
         [currentAlertArray addObject:self];
@@ -270,7 +273,7 @@ static NSMutableArray * currentAlertArray = nil;
         {
             [UIView animateWithDuration:0.5 animations:^{
                 self.view.alpha = 0.7;
-                self.view.frame = CGRectMake(0, screenSize.height, screenSize.width , 70);
+                self.view.frame = CGRectMake(0, (_EHAlertPosition)?-70:screenSize.height, screenSize.width , 70);
             } completion:^(BOOL finished) {
                 [self.view removeFromSuperview];
             }];
@@ -279,7 +282,7 @@ static NSMutableArray * currentAlertArray = nil;
             {
                 EHPlainAlert * alert = [currentAlertArray objectAtIndex:i];
                 [UIView animateWithDuration:0.5 animations:^{
-                    alert.view.frame = CGRectMake(0, screenSize.height - 70 * (i + 1) - 0.5 * (i), screenSize.width, 70);
+                    alert.view.frame = CGRectMake(0, EHPOSITIONFORALERT(i), screenSize.width, 70);
                 }];
             }
         }
@@ -289,7 +292,7 @@ static NSMutableArray * currentAlertArray = nil;
             for (int i = 0; i < [currentAlertArray count]; i++)
             {
                 EHPlainAlert * alert = [currentAlertArray objectAtIndex:i];
-                alert.view.frame = CGRectMake(0, screenSize.height - 70 * (i + 1) - 0.5 * (i), screenSize.width, 70);
+                alert.view.frame = CGRectMake(0, EHPOSITIONFORALERT(i), screenSize.width, 70);
             }
         }
     }
@@ -343,6 +346,11 @@ static NSMutableArray * currentAlertArray = nil;
 + (void)updateSubTitleFont:(UIFont *)stitleFont
 {
     _EHSubTitleFont = stitleFont;
+}
+
++ (void)updateAlertPosition:(ViewAlertPosition)viewPosition
+{
+    _EHAlertPosition = viewPosition;
 }
 
 + (void)updateAlertColor:(UIColor *)color forType:(ViewAlertType)type

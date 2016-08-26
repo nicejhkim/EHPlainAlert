@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [EHPlainAlert updateAlertPosition:ViewAlertPositionTop];
 //    [EHPlainAlert updateTitleFont:[UIFont fontWithName:@"TrebuchetMS" size:18]];
 //    [EHPlainAlert updateSubTitleFont:[UIFont fontWithName:@"TrebuchetMS" size:10]];
 //    [EHPlainAlert updateNumberOfAlerts:4];
