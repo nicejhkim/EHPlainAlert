@@ -101,6 +101,10 @@ Change fonts for alert type
 
 ####Colors:
 
+####Appearance
+
+    [EHPlainAlert updateAlertPosition:ViewAlertPositionTop];
+
 Change background color of one alert
 
 	EHPlainAlert * ehAlert = [[EHPlainAlert alloc] initWithTitle:@"Hmm..." message:@"Blue color alert" type:ViewAlertInfo];
