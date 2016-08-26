@@ -13,7 +13,6 @@
 #define EHDEFAULT_SUBTITLE_FONT [UIFont fontWithName:@"HelveticaNeue-Light" size:12]
 #define EHDEFAULT_MAX_ALERTS_NUMBER 3
 #define EHDEFAULT_HIDING_DELAY 4
-
 #define EHPOSITIONFORALERT(i) (_EHAlertPosition == ViewAlertPositionBottom)?screenSize.height - 70 * (i + 1) - 0.5 * (i):70 * (i) + 0.5 * (i)
 
 static NSInteger _EHNumberOfVisibleAlerts = EHDEFAULT_MAX_ALERTS_NUMBER;

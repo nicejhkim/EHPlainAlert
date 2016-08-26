@@ -105,6 +105,15 @@
     
 }
 
+- (void)testAlertPosition
+{
+    [EHPlainAlert updateAlertPosition:ViewAlertPositionTop];
+    EHPlainAlert * alert = [[EHPlainAlert alloc] initWithTitle:@"My title" message:@"My message" type:ViewAlertError];
+    XCTAssertNotNil(alert);
+    [alert show];
+    XCTAssertLessThan(alert.view.frame.origin.y,70);
+}
+
 - (void)testColor
 {
     NSInteger hex = arc4random()%0xffffff;
