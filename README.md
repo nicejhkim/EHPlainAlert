@@ -101,10 +101,6 @@ Change fonts for alert type
 
 ####Colors:
 
-####Appearance
-
-    [EHPlainAlert updateAlertPosition:ViewAlertPositionTop];
-
 Change background color of one alert
 
 	EHPlainAlert * ehAlert = [[EHPlainAlert alloc] initWithTitle:@"Hmm..." message:@"Blue color alert" type:ViewAlertInfo];
@@ -114,6 +110,10 @@ Change background color of one alert
 Change color for alert type
 
     [EHPlainAlert updateAlertColor:[UIColor colorWithWhite:0 alpha:0.5] forType:ViewAlertPanic];
+
+####Appearance
+
+    [EHPlainAlert updateAlertPosition:ViewAlertPositionTop];
 
 ####Icons:
 
