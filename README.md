@@ -19,7 +19,7 @@ This is simple extension for presenting multiple system-wide notifications from 
 ## Installation
 
 ### CocoaPods
-To install SDCAlertView using CocoaPods, please integrate it in your existing Podfile, or create a new Podfile:
+To install EHPlainAlert using CocoaPods, please integrate it in your existing Podfile, or create a new Podfile:
 
 ```ruby
 platform :ios, '7.1'
