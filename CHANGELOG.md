@@ -1,3 +1,9 @@
+### Version 1.2.1
+Test updated
+
+### Version 1.2.0
+Added appearance customization
+
 ### Version 1.1.1
 Fixing pods bundle bug
 
