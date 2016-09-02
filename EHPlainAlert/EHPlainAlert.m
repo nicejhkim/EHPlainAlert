@@ -208,9 +208,13 @@ static NSMutableArray * currentAlertArray = nil;
     UIImageView * closeView = [[UIImageView alloc] initWithImage:[EHPlainAlert imageNamed:@"eh_alert_close_icon"]];
     closeView.frame = CGRectMake(infoView.bounds.size.width - 15, 8, 7, 7);
     closeView.contentMode = UIViewContentModeCenter;
+    
+    closeView.userInteractionEnabled = YES;
     [infoView addSubview:closeView];
+    
+    UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onCloseTap:)];
+    [closeView addGestureRecognizer:tapGesture];
 }
-
 
 + (UIImage *)imageNamed:(NSString *)name
 {
@@ -310,6 +314,11 @@ static NSMutableArray * currentAlertArray = nil;
     {
         _action();
     }
+}
+
+- (void)onCloseTap:(UIGestureRecognizer *)gesture
+{
+    [self hide];
 }
 
 #pragma mark - Setters
