@@ -206,7 +206,7 @@ static NSMutableArray * currentAlertArray = nil;
     [infoView addSubview:imageView];
     
     UIImageView * closeView = [[UIImageView alloc] initWithImage:[EHPlainAlert imageNamed:@"eh_alert_close_icon"]];
-    closeView.frame = CGRectMake(infoView.bounds.size.width - 15, 8, 7, 7);
+    closeView.frame = CGRectMake(infoView.bounds.size.width - 35, 7, 28, 28);
     closeView.contentMode = UIViewContentModeCenter;
     
     closeView.userInteractionEnabled = YES;
