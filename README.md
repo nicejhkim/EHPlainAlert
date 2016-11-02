@@ -30,11 +30,6 @@ end
 ```
 Then run `pod install`.
 
-### Manual
-
-Add EHPlainAlert folder to your project 
-
-
 ##Usage
 
 	#import <EHPlainAlert/EHPlainAlert.h>
