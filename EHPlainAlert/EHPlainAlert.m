@@ -7,7 +7,7 @@
 //
 
 #import "EHPlainAlert.h"
-#import "UIColor+EHColorAdditions.h"
+#import "UIColor+HexRGB.h"
 
 #define EHDEFAULT_TITLE_FONT [UIFont fontWithName:@"HelveticaNeue-Light" size:15]
 #define EHDEFAULT_SUBTITLE_FONT [UIFont fontWithName:@"HelveticaNeue-Light" size:12]
@@ -119,10 +119,10 @@ static NSMutableArray * currentAlertArray = nil;
 {
     if (!_EHColorsDictionary)
     {
-        _EHColorsDictionary = [@{ @(ViewAlertError) : [UIColor colorWithHex:0xFDB937],
-                                  @(ViewAlertSuccess) : [UIColor colorWithHex:0x49BB7B],
-                                  @(ViewAlertInfo) :  [UIColor colorWithHex:0x00B2F4],
-                                  @(ViewAlertPanic) :[UIColor colorWithHex:0xf24841]
+        _EHColorsDictionary = [@{ @(ViewAlertError) : [UIColor colorWithHex:@"#FDB937"],
+                                  @(ViewAlertSuccess) : [UIColor colorWithHex:@"#49BB7B"],
+                                  @(ViewAlertInfo) :  [UIColor colorWithHex:@"#00B2F4"],
+                                  @(ViewAlertPanic) :[UIColor colorWithHex:@"#f24841"]
                                   } mutableCopy];
     }
 }
@@ -196,7 +196,7 @@ static NSMutableArray * currentAlertArray = nil;
  
     if (!bgColor)
     {
-        bgColor = [UIColor colorWithHex:0xFDB937];
+        bgColor = [UIColor colorWithHex:@"#FDB937"];
     }
  
     
