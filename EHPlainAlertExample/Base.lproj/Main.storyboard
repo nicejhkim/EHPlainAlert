@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -14,11 +18,11 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lf0-ag-trI">
-                                <rect key="frame" x="0.0" y="84" width="80" height="56"/>
+                                <rect key="frame" x="0.0" y="84" width="94" height="56"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="zpa-nd-LOd"/>
                                 </constraints>
@@ -28,28 +32,28 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9G3-2X-K73">
-                                <rect key="frame" x="80" y="84" width="80" height="56"/>
+                                <rect key="frame" x="94" y="84" width="93.5" height="56"/>
                                 <state key="normal" title="Error"/>
                                 <connections>
                                     <action selector="failureAlert:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TG5-4Y-wwv"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zar-v4-YEZ">
-                                <rect key="frame" x="160" y="84" width="80" height="56"/>
+                                <rect key="frame" x="187.5" y="84" width="94" height="56"/>
                                 <state key="normal" title="Info"/>
                                 <connections>
                                     <action selector="infoAlert:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZZj-e9-HTC"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8ww-0b-koH">
-                                <rect key="frame" x="240" y="84" width="80" height="56"/>
+                                <rect key="frame" x="281.5" y="84" width="93.5" height="56"/>
                                 <state key="normal" title="Panic!"/>
                                 <connections>
                                     <action selector="panicAlert:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JwM-hP-VsG"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FsR-f7-TGj">
-                                <rect key="frame" x="93" y="175" width="135" height="56"/>
+                                <rect key="frame" x="120" y="175" width="135" height="56"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="135" id="2bn-ey-ofN"/>
                                     <constraint firstAttribute="height" constant="56" id="Vms-c5-u4m"/>
@@ -59,11 +63,23 @@
                                     <action selector="infoWithSafari:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rUI-sG-bWf"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Fa-S5-vic">
+                                <rect key="frame" x="120" y="239" width="135" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="CjK-8F-Vau"/>
+                                    <constraint firstAttribute="width" constant="135" id="M33-0e-D7c"/>
+                                </constraints>
+                                <state key="normal" title="hide all"/>
+                                <connections>
+                                    <action selector="hideAll:" destination="BYZ-38-t0r" eventType="touchUpInside" id="E9D-xA-2aj"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="9G3-2X-K73" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="64" id="6bd-zY-a4i"/>
                             <constraint firstItem="8ww-0b-koH" firstAttribute="width" secondItem="Lf0-ag-trI" secondAttribute="width" id="A5A-XL-1YO"/>
+                            <constraint firstItem="2Fa-S5-vic" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Ccg-1D-9t4"/>
                             <constraint firstItem="Zar-v4-YEZ" firstAttribute="width" secondItem="Lf0-ag-trI" secondAttribute="width" id="DJm-xX-6py"/>
                             <constraint firstItem="Lf0-ag-trI" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="64" id="EZH-gH-mGR"/>
                             <constraint firstItem="Zar-v4-YEZ" firstAttribute="leading" secondItem="9G3-2X-K73" secondAttribute="trailing" id="JVP-We-gnh"/>
@@ -71,6 +87,7 @@
                             <constraint firstItem="8ww-0b-koH" firstAttribute="height" secondItem="Lf0-ag-trI" secondAttribute="height" id="LNL-xg-ZQ4"/>
                             <constraint firstAttribute="trailing" secondItem="8ww-0b-koH" secondAttribute="trailing" id="Rt6-j2-q4r"/>
                             <constraint firstItem="FsR-f7-TGj" firstAttribute="top" secondItem="Zar-v4-YEZ" secondAttribute="bottom" constant="35" id="UzN-Rb-YH5"/>
+                            <constraint firstItem="2Fa-S5-vic" firstAttribute="top" secondItem="FsR-f7-TGj" secondAttribute="bottom" constant="8" id="W1Y-2V-AoH"/>
                             <constraint firstItem="Zar-v4-YEZ" firstAttribute="leading" secondItem="9G3-2X-K73" secondAttribute="trailing" id="Xu7-oT-suG"/>
                             <constraint firstItem="FsR-f7-TGj" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="YZg-wj-zY1"/>
                             <constraint firstItem="9G3-2X-K73" firstAttribute="leading" secondItem="Lf0-ag-trI" secondAttribute="trailing" id="bck-Xx-Cen"/>
@@ -84,7 +101,6 @@
                             <constraint firstItem="Zar-v4-YEZ" firstAttribute="height" secondItem="Lf0-ag-trI" secondAttribute="height" id="x8x-Gn-AgF"/>
                         </constraints>
                     </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

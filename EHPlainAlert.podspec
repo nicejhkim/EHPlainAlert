@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "EHPlainAlert"
-  s.version          = "1.2.1"
+  s.version          = "1.2.5"
   s.summary          = "Simple plain-style system-wide alertview"
 
 # This description is used to generate tags and improve search results.
@@ -38,5 +38,5 @@ Pod::Spec.new do |s|
 
   
   # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.dependency 'UIColor-HexRGB'
 end

@@ -1,3 +1,9 @@
+### Version 1.2.5
+methods added:
+	-hide
+	+hideAll:animated
+
+
 ### Version 1.2.1
 Test updated
 

@@ -94,6 +94,12 @@ typedef void (^ ActionBlock)();
  */
 + (instancetype)showAlertWithTitle:(NSString *)title message:(NSString *)message type:(ViewAlertType)type;
 
+/*!
+ * @brief hide all alerts
+ *
+ * @param animated use animation
+ */
++(void)hideAll:(BOOL)animated;
 
 /*!
  * @brief initialize notification
@@ -112,6 +118,10 @@ typedef void (^ ActionBlock)();
  */
 - (void)show;
 
+/*!
+ * @brief hide notification
+ */
+- (void)hide;
 /*!
  * @brief change maximum number of alerts on screen
  *

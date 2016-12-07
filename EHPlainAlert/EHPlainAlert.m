@@ -83,6 +83,14 @@ static NSMutableArray * currentAlertArray = nil;
     return alert;
 }
 
++(void)hideAll:(BOOL)animated
+{
+    for (EHPlainAlert * alert in currentAlertArray)
+    {
+        [alert hide:@(animated)];
+    }
+}
+
 - (id)initWithTitle:(NSString *)title message:(NSString *)message type:(ViewAlertType)type;
 {
     self = [super init];
