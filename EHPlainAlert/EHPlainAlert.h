@@ -22,6 +22,12 @@ typedef enum : NSUInteger {
     ViewAlertPositionTop
 } ViewAlertPosition;
 
+
+typedef enum : NSInteger {
+    EHUseClassValue = -1,
+    EHNo = 0,
+    EHYes = 1
+} EHBoolean;
 typedef void (^ ActionBlock)();
 
 
@@ -68,6 +74,22 @@ typedef void (^ ActionBlock)();
  *
  */
 @property (nonatomic, copy) NSString * subtitleString;
+
+
+/*!
+ * @brief Tap on alert behaviour; If value is equal to EHUseClassValue(-1), then will used value defined by +updateShouldHideOnTap:
+ *                                If value is equal to EHNo(0), then alert dismissed only after delay, or by calling -hide: or +hideAll:
+ *                                If value is equal to EHYes(1), then alert would be dismissed even if +updateShouldHideOnTap: was setted to NO
+ */
+@property (nonatomic, assign) EHBoolean shouldHideOnTap;
+
+
+/*!
+ * @brief Close icon visibility; If value is equal to EHUseClassValue(-1), then would be used value defined by +updateShouldShowCloseIcon:
+ *                               If value is equal to EHNo(0), then close icon would not be shown
+ *                               If value is equal to EHYes(1), then close icon would be shown even if +updateShouldShowCloseIcon: was setted to NO
+ */
+@property (nonatomic, assign) EHBoolean shouldShowCloseIcon;
 
 /*!
  * @brief show notification with title "Error" and subtitle error.localizedDescription
@@ -122,6 +144,7 @@ typedef void (^ ActionBlock)();
  * @brief hide notification
  */
 - (void)hide;
+
 /*!
  * @brief change maximum number of alerts on screen
  *
@@ -176,11 +199,18 @@ typedef void (^ ActionBlock)();
 + (void)updateAlertIcon:(UIImage *)image forType:(ViewAlertType)type;
 
 /*!
- * @brief change default alert icon
+ * @brief change default tap behaviour
  *
- * @param image Icon image
+ * @param hide Should hide alert on tap. Default YES, alert would hide on tap
  *
- * @param type Message type
  */
++ (void)updateShouldHideOnTap:(BOOL)hide;
 
+/*!
+ * @brief change default close icon visibility
+ *
+ * @param hide Should show close icon. Default YES, close icon is visible
+ *
+ */
++ (void)updateShouldShowCloseIcon:(BOOL)show;
 @end

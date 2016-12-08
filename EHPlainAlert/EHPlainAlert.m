@@ -21,6 +21,9 @@ static float _EHHidingDelay = EHDEFAULT_HIDING_DELAY;
 static UIFont * _EHTitleFont = nil;
 static UIFont * _EHSubTitleFont = nil;
 
+static BOOL _EHShouldHideOnTap = YES;
+static BOOL _EHShouldShowCloseIcon = YES;
+
 static NSMutableDictionary * _EHColorsDictionary = nil;
 static NSMutableDictionary * _EHIconsDictionary = nil;
 
@@ -98,6 +101,8 @@ static NSMutableArray * currentAlertArray = nil;
     {
         self.titleString = title;
         self.subtitleString = message;
+        _shouldShowCloseIcon = -1;
+        _shouldHideOnTap = -1;
         if (!currentAlertArray)
         {
             currentAlertArray = [NSMutableArray new];
@@ -213,15 +218,23 @@ static NSMutableArray * currentAlertArray = nil;
     imageView.contentMode = UIViewContentModeCenter;
     [infoView addSubview:imageView];
     
-    UIImageView * closeView = [[UIImageView alloc] initWithImage:[EHPlainAlert imageNamed:@"eh_alert_close_icon"]];
-    closeView.frame = CGRectMake(infoView.bounds.size.width - 15, 8, 7, 7);
-    closeView.contentMode = UIViewContentModeCenter;
     
-    closeView.userInteractionEnabled = YES;
-    [infoView addSubview:closeView];
+    if (_shouldShowCloseIcon == 1 || (_EHShouldShowCloseIcon && _shouldShowCloseIcon == -1))
+    {
+        UIImageView * closeView = [[UIImageView alloc] initWithImage:[EHPlainAlert imageNamed:@"eh_alert_close_icon"]];
+        closeView.frame = CGRectMake(infoView.bounds.size.width - 15, 8, 7, 7);
+        closeView.contentMode = UIViewContentModeCenter;
+        
+        closeView.userInteractionEnabled = YES;
+        [infoView addSubview:closeView];
+        
+        UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onCloseTap:)];
+        [closeView addGestureRecognizer:tapGesture];
+    }
     
-    UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onCloseTap:)];
-    [closeView addGestureRecognizer:tapGesture];
+    
+    
+    
 }
 
 + (UIImage *)imageNamed:(NSString *)name
@@ -316,7 +329,9 @@ static NSMutableArray * currentAlertArray = nil;
 
 - (void)onTap
 {
-    [self hide];
+    if (_shouldHideOnTap == 1 || (_EHShouldHideOnTap && _shouldShowCloseIcon == -1)) {
+        [self hide];
+    }
     
     if (_action != nil)
     {
@@ -394,5 +409,15 @@ static NSMutableArray * currentAlertArray = nil;
     {
         [_EHIconsDictionary removeObjectForKey:@(type)];
     }
+}
+
++ (void)updateShouldHideOnTap:(BOOL)hide
+{
+    _EHShouldHideOnTap = hide;
+}
+
++ (void)updateShouldShowCloseIcon:(BOOL)show
+{
+    _EHShouldShowCloseIcon = show;
 }
 @end
