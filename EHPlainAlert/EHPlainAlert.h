@@ -10,17 +10,17 @@
 
 
 typedef enum : NSUInteger {
-    ViewAlertError,
-    ViewAlertSuccess,
-    ViewAlertInfo,
-    ViewAlertPanic,
-    ViewAlertUnknown
-} ViewAlertType;
+    EHPlainAlertError,
+    EHPlainAlertSuccess,
+    EHPlainAlertInfo,
+    EHPlainAlertPanic,
+    EHPlainAlertUnknown
+} EHPlainAlertType;
 
 typedef enum : NSUInteger {
-    ViewAlertPositionBottom = 0,
-    ViewAlertPositionTop
-} ViewAlertPosition;
+    EHPlainAlertPositionBottom = 0,
+    EHPlainAlertPositionTop
+} EHPlainAlertPosition;
 
 
 typedef enum : NSInteger {
@@ -114,7 +114,7 @@ typedef void (^ ActionBlock)();
  *
  * @param type The type of the notification, e.g. ViewAlertSuccess
  */
-+ (instancetype)showAlertWithTitle:(NSString *)title message:(NSString *)message type:(ViewAlertType)type;
++ (instancetype)showAlertWithTitle:(NSString *)title message:(NSString *)message type:(EHPlainAlertType)type;
 
 /*!
  * @brief hide all alerts
@@ -132,7 +132,7 @@ typedef void (^ ActionBlock)();
  *
  * @param type The type of the notification, e.g. ViewAlertSuccess
  */
-- (id)initWithTitle:(NSString *)title message:(NSString *)message type:(ViewAlertType)type;
+- (id)initWithTitle:(NSString *)title message:(NSString *)message type:(EHPlainAlertType)type;
 
 
 /*!
@@ -178,7 +178,7 @@ typedef void (^ ActionBlock)();
  *
  * @param viewPosition of type ViewAlertPosition. Default is ViewAlertPositionBottom
  */
-+ (void)updateAlertPosition:(ViewAlertPosition)viewPosition;
++ (void)updateAlertPosition:(EHPlainAlertPosition)viewPosition;
 
 /*!
  * @brief change default alert color
@@ -187,7 +187,7 @@ typedef void (^ ActionBlock)();
  *
  * @param type Message type
  */
-+ (void)updateAlertColor:(UIColor *)color forType:(ViewAlertType)type;
++ (void)updateAlertColor:(UIColor *)color forType:(EHPlainAlertType)type;
 
 /*!
  * @brief change default alert icon
@@ -196,7 +196,7 @@ typedef void (^ ActionBlock)();
  *
  * @param type Message type
  */
-+ (void)updateAlertIcon:(UIImage *)image forType:(ViewAlertType)type;
++ (void)updateAlertIcon:(UIImage *)image forType:(EHPlainAlertType)type;
 
 /*!
  * @brief change default tap behaviour

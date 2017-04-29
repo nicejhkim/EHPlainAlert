@@ -16,8 +16,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+<<<<<<< HEAD
+    [EHPlainAlert updateAlertPosition:EHPlainAlertPositionTop];
+=======
     [EHPlainAlert updateAlertPosition:ViewAlertPositionBottom];
     [EHPlainAlert updateShouldShowCloseIcon:NO];
+>>>>>>> josshad/master
 //    [EHPlainAlert updateTitleFont:[UIFont fontWithName:@"TrebuchetMS" size:18]];
 //    [EHPlainAlert updateSubTitleFont:[UIFont fontWithName:@"TrebuchetMS" size:10]];
 //    [EHPlainAlert updateNumberOfAlerts:4];
@@ -36,7 +40,7 @@
 
 - (IBAction)successAlert:(id)sender
 {
-    [EHPlainAlert showAlertWithTitle:@"Success" message:@"Something works!" type:ViewAlertSuccess];
+    [EHPlainAlert showAlertWithTitle:@"Success" message:@"Something works!" type:EHPlainAlertSuccess];
 }
 
 - (IBAction)failureAlert:(id)sender
@@ -51,7 +55,7 @@
 
 - (IBAction)infoAlert:(id)sender
 {
-    EHPlainAlert * ehAlert = [[EHPlainAlert alloc] initWithTitle:@"Info" message:@"This is info message" type:ViewAlertInfo];
+    EHPlainAlert * ehAlert = [[EHPlainAlert alloc] initWithTitle:@"Info" message:@"This is info message" type:EHPlainAlertInfo];
     ehAlert.titleFont = [UIFont fontWithName:@"TrebuchetMS" size:15];
     ehAlert.subTitleFont = [UIFont fontWithName:@"TrebuchetMS-Italic" size:12];
     ehAlert.shouldShowCloseIcon = YES;
@@ -61,12 +65,12 @@
 
 - (IBAction)panicAlert:(id)sender
 {
-    [EHPlainAlert showAlertWithTitle:@"Panic!" message:@"Something brokе!" type:ViewAlertPanic];
+    [EHPlainAlert showAlertWithTitle:@"Panic!" message:@"Something brokе!" type:EHPlainAlertPanic];
 }
 
 - (IBAction)infoWithSafari:(id)sender
 {
-    EHPlainAlert * ehAlert = [[EHPlainAlert alloc] initWithTitle:@"Hmm..." message:@"Tap for information" type:ViewAlertInfo];
+    EHPlainAlert * ehAlert = [[EHPlainAlert alloc] initWithTitle:@"Hmm..." message:@"Tap for information" type:EHPlainAlertInfo];
     ehAlert.action = ^{
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://github.com/josshad/EHPlainAlert"]];
     };

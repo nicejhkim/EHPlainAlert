@@ -16,7 +16,7 @@
 #define EHPOSITIONFORALERT(i) (_EHAlertPosition == ViewAlertPositionBottom)?screenSize.height - 70 * (i + 1) - 0.5 * (i):70 * (i) + 0.5 * (i)
 
 static NSInteger _EHNumberOfVisibleAlerts = EHDEFAULT_MAX_ALERTS_NUMBER;
-static ViewAlertPosition _EHAlertPosition = ViewAlertPositionBottom;
+static EHPlainAlertPosition _EHAlertPosition = EHPlainAlertPositionBottom;
 static float _EHHidingDelay = EHDEFAULT_HIDING_DELAY;
 static UIFont * _EHTitleFont = nil;
 static UIFont * _EHSubTitleFont = nil;
@@ -61,7 +61,7 @@ float EH_iOS_Version() {
 @implementation EHPlainAlert
 {
     CGSize screenSize;
-    ViewAlertType _alertType;
+    EHPlainAlertType _alertType;
     BOOL _iconSetted;
 }
 
@@ -69,23 +69,26 @@ static NSMutableArray * currentAlertArray = nil;
 
 + (instancetype)showError:(NSError *)error
 {
-    return [self showAlertWithTitle:@"Error" message:error.localizedDescription type:ViewAlertError];
+    return [self showAlertWithTitle:@"Error" message:error.localizedDescription type:EHPlainAlertError];
 }
 
 
 + (instancetype)showDomainError:(NSError *)error
 {
-    return [self showAlertWithTitle:error.domain message:error.localizedDescription type:ViewAlertError];
+    return [self showAlertWithTitle:error.domain message:error.localizedDescription type:EHPlainAlertError];
 }
 
 
-+ (instancetype)showAlertWithTitle:(NSString *)title message:(NSString *)message type:(ViewAlertType)type
++ (instancetype)showAlertWithTitle:(NSString *)title message:(NSString *)message type:(EHPlainAlertType)type
 {
     EHPlainAlert * alert = [[EHPlainAlert alloc] initWithTitle:title message:message type:type];
     [alert show];
     return alert;
 }
 
+<<<<<<< HEAD
+- (id)initWithTitle:(NSString *)title message:(NSString *)message type:(EHPlainAlertType)type;
+=======
 +(void)hideAll:(BOOL)animated
 {
     for (EHPlainAlert * alert in currentAlertArray)
@@ -95,6 +98,7 @@ static NSMutableArray * currentAlertArray = nil;
 }
 
 - (id)initWithTitle:(NSString *)title message:(NSString *)message type:(ViewAlertType)type;
+>>>>>>> josshad/master
 {
     self = [super init];
     if (self)
@@ -132,10 +136,10 @@ static NSMutableArray * currentAlertArray = nil;
 {
     if (!_EHColorsDictionary)
     {
-        _EHColorsDictionary = [@{ @(ViewAlertError) : [UIColor colorWithHex:@"#FDB937"],
-                                  @(ViewAlertSuccess) : [UIColor colorWithHex:@"#49BB7B"],
-                                  @(ViewAlertInfo) :  [UIColor colorWithHex:@"#00B2F4"],
-                                  @(ViewAlertPanic) :[UIColor colorWithHex:@"#f24841"]
+        _EHColorsDictionary = [@{ @(EHPlainAlertError) : [UIColor colorWithHex:@"#FDB937"],
+                                  @(EHPlainAlertSuccess) : [UIColor colorWithHex:@"#49BB7B"],
+                                  @(EHPlainAlertInfo) :  [UIColor colorWithHex:@"#00B2F4"],
+                                  @(EHPlainAlertPanic) :[UIColor colorWithHex:@"#f24841"]
                                   } mutableCopy];
     }
 }
@@ -144,10 +148,10 @@ static NSMutableArray * currentAlertArray = nil;
 {
     if (!_EHIconsDictionary)
     {
-        _EHIconsDictionary = [@{ @(ViewAlertError) : [EHPlainAlert imageNamed:@"eh_alert_error_icon"],
-                                  @(ViewAlertSuccess) : [EHPlainAlert imageNamed:@"eh_alert_complete_icon"],
-                                  @(ViewAlertInfo) :  [EHPlainAlert imageNamed:@"eh_alert_info_icon"],
-                                  @(ViewAlertPanic) :[EHPlainAlert imageNamed:@"eh_alert_error_icon"]
+        _EHIconsDictionary = [@{ @(EHPlainAlertError) : [EHPlainAlert imageNamed:@"eh_alert_error_icon"],
+                                  @(EHPlainAlertSuccess) : [EHPlainAlert imageNamed:@"eh_alert_complete_icon"],
+                                  @(EHPlainAlertInfo) :  [EHPlainAlert imageNamed:@"eh_alert_info_icon"],
+                                  @(EHPlainAlertPanic) :[EHPlainAlert imageNamed:@"eh_alert_error_icon"]
                                   } mutableCopy];
     }
 }
@@ -273,7 +277,7 @@ static NSMutableArray * currentAlertArray = nil;
         else
             [([UIApplication sharedApplication].delegate).window insertSubview:self.view belowSubview:[((EHPlainAlert *)[currentAlertArray lastObject]) view]];
         [UIView animateWithDuration:0.3 animations:^{
-            self.view.frame = CGRectMake(0, EHPOSITIONFORALERT(numberOfAlerts), screenSize.width, 70);
+            self.view.frame = CGRectMake(0, EHPlainAlertPositionBottom, screenSize.width, 70);
         }];
         
         [currentAlertArray addObject:self];
@@ -306,7 +310,7 @@ static NSMutableArray * currentAlertArray = nil;
             {
                 EHPlainAlert * alert = [currentAlertArray objectAtIndex:i];
                 [UIView animateWithDuration:0.5 animations:^{
-                    alert.view.frame = CGRectMake(0, EHPOSITIONFORALERT(i), screenSize.width, 70);
+                    alert.view.frame = CGRectMake(0, EHPlainAlertPositionBottom, screenSize.width, 70);
                 }];
             }
         }
@@ -316,7 +320,7 @@ static NSMutableArray * currentAlertArray = nil;
             for (int i = 0; i < [currentAlertArray count]; i++)
             {
                 EHPlainAlert * alert = [currentAlertArray objectAtIndex:i];
-                alert.view.frame = CGRectMake(0, EHPOSITIONFORALERT(i), screenSize.width, 70);
+                alert.view.frame = CGRectMake(0, EHPlainAlertPositionBottom, screenSize.width, 70);
             }
         }
     }
@@ -379,12 +383,12 @@ static NSMutableArray * currentAlertArray = nil;
     _EHSubTitleFont = stitleFont;
 }
 
-+ (void)updateAlertPosition:(ViewAlertPosition)viewPosition
++ (void)updateAlertPosition:(EHPlainAlertPosition)viewPosition
 {
     _EHAlertPosition = viewPosition;
 }
 
-+ (void)updateAlertColor:(UIColor *)color forType:(ViewAlertType)type
++ (void)updateAlertColor:(UIColor *)color forType:(EHPlainAlertType)type
 {
     [EHPlainAlert updateColorsDictionary];
     if (color)
@@ -398,7 +402,7 @@ static NSMutableArray * currentAlertArray = nil;
 }
 
 
-+ (void)updateAlertIcon:(UIImage *)image forType:(ViewAlertType)type
++ (void)updateAlertIcon:(UIImage *)image forType:(EHPlainAlertType)type
 {
     [EHPlainAlert updateIconsDictionary];
     if (image)
