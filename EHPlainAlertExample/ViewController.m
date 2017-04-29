@@ -16,12 +16,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-<<<<<<< HEAD
+
     [EHPlainAlert updateAlertPosition:EHPlainAlertPositionTop];
-=======
-    [EHPlainAlert updateAlertPosition:ViewAlertPositionBottom];
-    [EHPlainAlert updateShouldShowCloseIcon:NO];
->>>>>>> josshad/master
+
 //    [EHPlainAlert updateTitleFont:[UIFont fontWithName:@"TrebuchetMS" size:18]];
 //    [EHPlainAlert updateSubTitleFont:[UIFont fontWithName:@"TrebuchetMS" size:10]];
 //    [EHPlainAlert updateNumberOfAlerts:4];
