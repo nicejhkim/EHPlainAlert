@@ -16,7 +16,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+<<<<<<< HEAD
     [EHPlainAlert updateAlertPosition:EHPlainAlertPositionTop];
+=======
+    [EHPlainAlert updateAlertPosition:ViewAlertPositionBottom];
+    [EHPlainAlert updateShouldShowCloseIcon:NO];
+>>>>>>> josshad/master
 //    [EHPlainAlert updateTitleFont:[UIFont fontWithName:@"TrebuchetMS" size:18]];
 //    [EHPlainAlert updateSubTitleFont:[UIFont fontWithName:@"TrebuchetMS" size:10]];
 //    [EHPlainAlert updateNumberOfAlerts:4];
@@ -53,6 +58,7 @@
     EHPlainAlert * ehAlert = [[EHPlainAlert alloc] initWithTitle:@"Info" message:@"This is info message" type:EHPlainAlertInfo];
     ehAlert.titleFont = [UIFont fontWithName:@"TrebuchetMS" size:15];
     ehAlert.subTitleFont = [UIFont fontWithName:@"TrebuchetMS-Italic" size:12];
+    ehAlert.shouldShowCloseIcon = YES;
     [ehAlert show];
 
 }
@@ -73,4 +79,8 @@
     [ehAlert show];
 }
 
+- (IBAction)hideAll:(id)sender
+{
+    [EHPlainAlert hideAll:YES];
+}
 @end
