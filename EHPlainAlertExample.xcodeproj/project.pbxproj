@@ -18,8 +18,9 @@
 		83B3FB801CA3016600E8EB8E /* eh_alert_error_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83B3FB7C1CA3016600E8EB8E /* eh_alert_error_icon@2x.png */; };
 		83B3FB811CA3016600E8EB8E /* eh_alert_info_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83B3FB7D1CA3016600E8EB8E /* eh_alert_info_icon@2x.png */; };
 		83B3FB861CA3017400E8EB8E /* EHPlainAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B3FB831CA3017400E8EB8E /* EHPlainAlert.m */; };
-		83B3FB871CA3017400E8EB8E /* UIColor+EHColorAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B3FB851CA3017400E8EB8E /* UIColor+EHColorAdditions.m */; };
 		83E7D4351CA970350011CBD6 /* EHPlainAlertExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E7D4341CA970350011CBD6 /* EHPlainAlertExampleTests.m */; };
+		B532C76AEEFC35DEE0364F04 /* libPods-EHPlainAlertExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E5A080AFA771C49166AD8D4 /* libPods-EHPlainAlertExample.a */; };
+		CDBF58FC6EF300990932DF00 /* libPods-EHPlainAlertExampleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B814D5B143597AF575FFD9F3 /* libPods-EHPlainAlertExampleTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +34,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2447FC8AB0429154960656FD /* Pods-EHPlainAlertExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EHPlainAlertExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-EHPlainAlertExample/Pods-EHPlainAlertExample.release.xcconfig"; sourceTree = "<group>"; };
+		721BDCAF98F67246B5E57EDC /* Pods-EHPlainAlertExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EHPlainAlertExampleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EHPlainAlertExampleTests/Pods-EHPlainAlertExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
+		7E5A080AFA771C49166AD8D4 /* libPods-EHPlainAlertExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EHPlainAlertExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		83B1310C1C9AF01300987B4F /* EHPlainAlertExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EHPlainAlertExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83B131101C9AF01300987B4F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		83B131121C9AF01300987B4F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -49,11 +53,12 @@
 		83B3FB7D1CA3016600E8EB8E /* eh_alert_info_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "eh_alert_info_icon@2x.png"; path = "EHPlainAlert/icons/eh_alert_info_icon@2x.png"; sourceTree = SOURCE_ROOT; };
 		83B3FB821CA3017400E8EB8E /* EHPlainAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EHPlainAlert.h; path = EHPlainAlert/EHPlainAlert.h; sourceTree = SOURCE_ROOT; };
 		83B3FB831CA3017400E8EB8E /* EHPlainAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EHPlainAlert.m; path = EHPlainAlert/EHPlainAlert.m; sourceTree = SOURCE_ROOT; };
-		83B3FB841CA3017400E8EB8E /* UIColor+EHColorAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+EHColorAdditions.h"; path = "EHPlainAlert/UIColor+EHColorAdditions.h"; sourceTree = SOURCE_ROOT; };
-		83B3FB851CA3017400E8EB8E /* UIColor+EHColorAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+EHColorAdditions.m"; path = "EHPlainAlert/UIColor+EHColorAdditions.m"; sourceTree = SOURCE_ROOT; };
 		83E7D4321CA970350011CBD6 /* EHPlainAlertExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EHPlainAlertExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		83E7D4341CA970350011CBD6 /* EHPlainAlertExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EHPlainAlertExampleTests.m; sourceTree = "<group>"; };
 		83E7D4361CA970350011CBD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B814D5B143597AF575FFD9F3 /* libPods-EHPlainAlertExampleTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EHPlainAlertExampleTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C478A8684D29E5AA496C5BC5 /* Pods-EHPlainAlertExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EHPlainAlertExampleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EHPlainAlertExampleTests/Pods-EHPlainAlertExampleTests.release.xcconfig"; sourceTree = "<group>"; };
+		E0FB82EC9F1E0BFE9ECA5639 /* Pods-EHPlainAlertExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EHPlainAlertExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EHPlainAlertExample/Pods-EHPlainAlertExample.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B532C76AEEFC35DEE0364F04 /* libPods-EHPlainAlertExample.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,18 +74,32 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDBF58FC6EF300990932DF00 /* libPods-EHPlainAlertExampleTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		33CCAB69616794C366A21572 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E0FB82EC9F1E0BFE9ECA5639 /* Pods-EHPlainAlertExample.debug.xcconfig */,
+				2447FC8AB0429154960656FD /* Pods-EHPlainAlertExample.release.xcconfig */,
+				721BDCAF98F67246B5E57EDC /* Pods-EHPlainAlertExampleTests.debug.xcconfig */,
+				C478A8684D29E5AA496C5BC5 /* Pods-EHPlainAlertExampleTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		83B131031C9AF01300987B4F = {
 			isa = PBXGroup;
 			children = (
 				83B1310E1C9AF01300987B4F /* EHPlainAlertExample */,
 				83E7D4331CA970350011CBD6 /* EHPlainAlertExampleTests */,
 				83B1310D1C9AF01300987B4F /* Products */,
+				33CCAB69616794C366A21572 /* Pods */,
+				DAC84B3769D02C320A1EB4F0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -126,8 +146,6 @@
 			children = (
 				83B3FB821CA3017400E8EB8E /* EHPlainAlert.h */,
 				83B3FB831CA3017400E8EB8E /* EHPlainAlert.m */,
-				83B3FB841CA3017400E8EB8E /* UIColor+EHColorAdditions.h */,
-				83B3FB851CA3017400E8EB8E /* UIColor+EHColorAdditions.m */,
 			);
 			name = EHPlainAlert;
 			sourceTree = "<group>";
@@ -141,6 +159,15 @@
 			path = EHPlainAlertExampleTests;
 			sourceTree = "<group>";
 		};
+		DAC84B3769D02C320A1EB4F0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7E5A080AFA771C49166AD8D4 /* libPods-EHPlainAlertExample.a */,
+				B814D5B143597AF575FFD9F3 /* libPods-EHPlainAlertExampleTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -148,9 +175,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 83B131231C9AF01300987B4F /* Build configuration list for PBXNativeTarget "EHPlainAlertExample" */;
 			buildPhases = (
+				D6BEEA464C87D364FA38FF11 /* [CP] Check Pods Manifest.lock */,
 				83B131081C9AF01300987B4F /* Sources */,
 				83B131091C9AF01300987B4F /* Frameworks */,
 				83B1310A1C9AF01300987B4F /* Resources */,
+				FDB6E09758EA3F990612BD49 /* [CP] Embed Pods Frameworks */,
+				1B5E2E62B839F425BAEF898F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -165,9 +195,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 83E7D43B1CA970350011CBD6 /* Build configuration list for PBXNativeTarget "EHPlainAlertExampleTests" */;
 			buildPhases = (
+				9D082AA550BD471AC7062EFD /* [CP] Check Pods Manifest.lock */,
 				83E7D42E1CA970350011CBD6 /* Sources */,
 				83E7D42F1CA970350011CBD6 /* Frameworks */,
 				83E7D4301CA970350011CBD6 /* Resources */,
+				92C3ABA4F71D1485EC4F16A6 /* [CP] Embed Pods Frameworks */,
+				85CC7B048175128B820896BC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -240,6 +273,99 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1B5E2E62B839F425BAEF898F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EHPlainAlertExample/Pods-EHPlainAlertExample-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		85CC7B048175128B820896BC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EHPlainAlertExampleTests/Pods-EHPlainAlertExampleTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		92C3ABA4F71D1485EC4F16A6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EHPlainAlertExampleTests/Pods-EHPlainAlertExampleTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9D082AA550BD471AC7062EFD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D6BEEA464C87D364FA38FF11 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FDB6E09758EA3F990612BD49 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EHPlainAlertExample/Pods-EHPlainAlertExample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		83B131081C9AF01300987B4F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -248,7 +374,6 @@
 				83B131171C9AF01300987B4F /* ViewController.m in Sources */,
 				83B131141C9AF01300987B4F /* AppDelegate.m in Sources */,
 				83B3FB861CA3017400E8EB8E /* EHPlainAlert.m in Sources */,
-				83B3FB871CA3017400E8EB8E /* UIColor+EHColorAdditions.m in Sources */,
 				83B131111C9AF01300987B4F /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -375,6 +500,7 @@
 		};
 		83B131241C9AF01300987B4F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E0FB82EC9F1E0BFE9ECA5639 /* Pods-EHPlainAlertExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = EHPlainAlertExample/Info.plist;
@@ -387,6 +513,7 @@
 		};
 		83B131251C9AF01300987B4F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2447FC8AB0429154960656FD /* Pods-EHPlainAlertExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = EHPlainAlertExample/Info.plist;
@@ -399,6 +526,7 @@
 		};
 		83E7D4391CA970350011CBD6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 721BDCAF98F67246B5E57EDC /* Pods-EHPlainAlertExampleTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = EHPlainAlertExampleTests/Info.plist;
@@ -411,6 +539,7 @@
 		};
 		83E7D43A1CA970350011CBD6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C478A8684D29E5AA496C5BC5 /* Pods-EHPlainAlertExampleTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = EHPlainAlertExampleTests/Info.plist;
@@ -449,6 +578,7 @@
 				83E7D43A1CA970350011CBD6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

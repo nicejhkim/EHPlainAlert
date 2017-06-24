@@ -1,3 +1,18 @@
+### Version 1.2.5
+methods added:
+	+ (void)updateShouldHideOnTap:(BOOL)hide;
+	+ (void)updateShouldShowCloseIcon:(BOOL)show;
+properties added:
+	@property (nonatomic, assign) EHBoolean shouldHideOnTap;
+	@property (nonatomic, assign) EHBoolean shouldShowCloseIcon;
+
+
+### Version 1.2.5
+methods added:
+	-hide
+	+hideAll:animated
+
+
 ### Version 1.2.1
 Test updated
 

@@ -10,18 +10,24 @@
 
 
 typedef enum : NSUInteger {
-    ViewAlertError,
-    ViewAlertSuccess,
-    ViewAlertInfo,
-    ViewAlertPanic,
-    ViewAlertUnknown
-} ViewAlertType;
+    EHPlainAlertError,
+    EHPlainAlertSuccess,
+    EHPlainAlertInfo,
+    EHPlainAlertPanic,
+    EHPlainAlertUnknown
+} EHPlainAlertType;
 
 typedef enum : NSUInteger {
-    ViewAlertPositionBottom = 0,
-    ViewAlertPositionTop
-} ViewAlertPosition;
+    EHPlainAlertPositionBottom = 0,
+    EHPlainAlertPositionTop
+} EHPlainAlertPosition;
 
+
+typedef enum : NSInteger {
+    EHUseClassValue = -1,
+    EHNo = 0,
+    EHYes = 1
+} EHBoolean;
 typedef void (^ ActionBlock)();
 
 
@@ -69,6 +75,22 @@ typedef void (^ ActionBlock)();
  */
 @property (nonatomic, copy) NSString * subtitleString;
 
+
+/*!
+ * @brief Tap on alert behaviour; If value is equal to EHUseClassValue(-1), then will used value defined by +updateShouldHideOnTap:
+ *                                If value is equal to EHNo(0), then alert dismissed only after delay, or by calling -hide: or +hideAll:
+ *                                If value is equal to EHYes(1), then alert would be dismissed even if +updateShouldHideOnTap: was setted to NO
+ */
+@property (nonatomic, assign) EHBoolean shouldHideOnTap;
+
+
+/*!
+ * @brief Close icon visibility; If value is equal to EHUseClassValue(-1), then would be used value defined by +updateShouldShowCloseIcon:
+ *                               If value is equal to EHNo(0), then close icon would not be shown
+ *                               If value is equal to EHYes(1), then close icon would be shown even if +updateShouldShowCloseIcon: was setted to NO
+ */
+@property (nonatomic, assign) EHBoolean shouldShowCloseIcon;
+
 /*!
  * @brief show notification with title "Error" and subtitle error.localizedDescription
  *
@@ -92,8 +114,14 @@ typedef void (^ ActionBlock)();
  *
  * @param type The type of the notification, e.g. ViewAlertSuccess
  */
-+ (instancetype)showAlertWithTitle:(NSString *)title message:(NSString *)message type:(ViewAlertType)type;
++ (instancetype)showAlertWithTitle:(NSString *)title message:(NSString *)message type:(EHPlainAlertType)type;
 
+/*!
+ * @brief hide all alerts
+ *
+ * @param animated use animation
+ */
++(void)hideAll:(BOOL)animated;
 
 /*!
  * @brief initialize notification
@@ -104,13 +132,18 @@ typedef void (^ ActionBlock)();
  *
  * @param type The type of the notification, e.g. ViewAlertSuccess
  */
-- (id)initWithTitle:(NSString *)title message:(NSString *)message type:(ViewAlertType)type;
+- (id)initWithTitle:(NSString *)title message:(NSString *)message type:(EHPlainAlertType)type;
 
 
 /*!
  * @brief show notification
  */
 - (void)show;
+
+/*!
+ * @brief hide notification
+ */
+- (void)hide;
 
 /*!
  * @brief change maximum number of alerts on screen
@@ -145,7 +178,7 @@ typedef void (^ ActionBlock)();
  *
  * @param viewPosition of type ViewAlertPosition. Default is ViewAlertPositionBottom
  */
-+ (void)updateAlertPosition:(ViewAlertPosition)viewPosition;
++ (void)updateAlertPosition:(EHPlainAlertPosition)viewPosition;
 
 /*!
  * @brief change default alert color
@@ -154,7 +187,7 @@ typedef void (^ ActionBlock)();
  *
  * @param type Message type
  */
-+ (void)updateAlertColor:(UIColor *)color forType:(ViewAlertType)type;
++ (void)updateAlertColor:(UIColor *)color forType:(EHPlainAlertType)type;
 
 /*!
  * @brief change default alert icon
@@ -163,14 +196,21 @@ typedef void (^ ActionBlock)();
  *
  * @param type Message type
  */
-+ (void)updateAlertIcon:(UIImage *)image forType:(ViewAlertType)type;
++ (void)updateAlertIcon:(UIImage *)image forType:(EHPlainAlertType)type;
 
 /*!
- * @brief change default alert icon
+ * @brief change default tap behaviour
  *
- * @param image Icon image
+ * @param hide Should hide alert on tap. Default YES, alert would hide on tap
  *
- * @param type Message type
  */
++ (void)updateShouldHideOnTap:(BOOL)hide;
 
+/*!
+ * @brief change default close icon visibility
+ *
+ * @param hide Should show close icon. Default YES, close icon is visible
+ *
+ */
++ (void)updateShouldShowCloseIcon:(BOOL)show;
 @end

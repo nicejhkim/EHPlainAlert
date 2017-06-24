@@ -30,16 +30,11 @@ end
 ```
 Then run `pod install`.
 
-### Manual
-
-Add EHPlainAlert folder to your project 
-
-
-##Usage
+## Usage
 
 	#import <EHPlainAlert/EHPlainAlert.h>
 
-###Presenting notification
+### Presenting notification
 
 All messages can simply presented via static method call:
 
@@ -55,7 +50,7 @@ Messages can be displayed from any location in app, even not associated with UI.
         }];
 
 
-###Presenting error notification
+### Presenting error notification
 
 For simplifying error handling you can use:
 
@@ -64,7 +59,7 @@ For simplifying error handling you can use:
 		[EHPlainAlert showError:error];
 	}
 
-###Hiding Messages
+### Hiding Messages
 
 Notifications will hidden automatically after 4 seconds. 
 
@@ -73,7 +68,7 @@ To change default delay use static method:
 
 Also you can just tap on message to hide it.
 
-###On Tap Actions
+### On Tap Actions
 
 You can change the default behavior for tapping on the notification:
 
@@ -83,9 +78,9 @@ You can change the default behavior for tapping on the notification:
     };
     [ehAlert show];
 
-###Customization
+### Customization
 
-####Fonts:
+#### Fonts:
 
 Change font of one alert
 
@@ -99,7 +94,7 @@ Change fonts for alert type
     [EHPlainAlert updateTitleFont:[UIFont fontWithName:@"TrebuchetMS" size:18]];
     [EHPlainAlert updateSubTitleFont:[UIFont fontWithName:@"TrebuchetMS" size:10]];
 
-####Colors:
+#### Colors:
 
 Change background color of one alert
 
@@ -111,11 +106,11 @@ Change color for alert type
 
     [EHPlainAlert updateAlertColor:[UIColor colorWithWhite:0 alpha:0.5] forType:ViewAlertPanic];
 
-####Appearance
+#### Appearance
 
     [EHPlainAlert updateAlertPosition:ViewAlertPositionTop];
 
-####Icons:
+#### Icons:
 
 Change icon of one alert
 
@@ -127,15 +122,15 @@ Change icon for alert type
 
     [EHPlainAlert updateAlertIcon:image forType:ViewAlertInfo]; 
 
-####Number of messages
+#### Number of messages
     
     [EHPlainAlert updateNumberOfAlerts:4];
 
-####Display time
+#### Display time
 
     [EHPlainAlert updateHidingDelay:2.5f];
 
-##Author
+## Author
 Danila Gusev
 
 <a href="mailto:jos.shad@gmail.com">jos.shad@gmail.com</a>
